@@ -1,5 +1,10 @@
 package com.azrosk.mypokemonapp.di
 
+import android.app.Application
+import androidx.room.Room
+import com.azrosk.data.local.MyDataBase
+import com.azrosk.data.local.pokemondetails.dao.PokemonDetailsDao
+import com.azrosk.data.local.pokemons.dao.PokemonsDao
 import com.azrosk.data.remote.pokemondetails.PokemonDetailsApi
 import com.azrosk.data.remote.pokemons.PokemonsApi
 import dagger.Module
@@ -38,5 +43,24 @@ object DataModule {
         retrofit
             .build()
             .create(PokemonDetailsApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideDB(app: Application): MyDataBase =
+        Room.databaseBuilder(
+            app,
+            MyDataBase::class.java,
+            MyDataBase.dbName
+        ).build()
+
+    @Singleton
+    @Provides
+    fun providePokemonsDao(db: MyDataBase): PokemonsDao =
+        db.getPokemonsDao()
+
+    @Singleton
+    @Provides
+    fun providePokemonDetailsDao(db: MyDataBase): PokemonDetailsDao =
+        db.getPokemonDetailsDao()
 
 }
