@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PokemonApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="type">Type:</string>
+    <string name="height">Height:</string>
+    <string name="weight">Weight:</string>
+    <string name="cm"> cm</string>
+    <string name="kg"> kg</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="error_loading_details">"Error loading details"</string>
+</resources>
