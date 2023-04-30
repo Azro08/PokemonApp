@@ -1,7 +1,10 @@
 package com.azrosk.mypokemonapp.di
 
+import com.azrosk.domain.usecase.GetPokemonDetailsUseCase
 import com.azrosk.domain.usecase.GetPokemonsUseCase
+import com.azrosk.logic.viewmodel.PokemonDetailsViewModel
 import com.azrosk.logic.viewmodel.PokemonsListViewModel
+import com.azrosk.ui.pokemondetails.PokemonDetailsViewModelApi
 import com.azrosk.ui.pokemonlist.PokemonsListViewModelApi
 import dagger.Module
 import dagger.Provides
@@ -19,6 +22,13 @@ object PresentationModule {
         useCase: GetPokemonsUseCase,
     ): PokemonsListViewModelApi =
         PokemonsListViewModel(useCase)
+
+    @Provides
+    @Singleton
+    fun providePokemonDetailsViewModelApi(
+        useCase: GetPokemonDetailsUseCase,
+    ): PokemonDetailsViewModelApi =
+        PokemonDetailsViewModel(useCase)
 
 
 }
