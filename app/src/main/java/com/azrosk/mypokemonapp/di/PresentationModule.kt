@@ -34,5 +34,4 @@ object PresentationModule {
     ): PokemonDetailsViewModelApi =
         PokemonDetailsViewModel(useCase, repository)
 
-
 }

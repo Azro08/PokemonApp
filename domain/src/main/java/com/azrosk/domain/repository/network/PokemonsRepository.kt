@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class PokemonsRepository
 @Inject constructor(private val api: PokemonsApi) {
-    suspend fun getPokemons( offset: Int, limit: Int): PokemonListResponse =
+    suspend fun getPokemons(offset: Int, limit: Int): PokemonListResponse =
         api.getPokemons(offset, limit)
 }

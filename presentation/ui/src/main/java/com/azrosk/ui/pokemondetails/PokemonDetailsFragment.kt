@@ -25,13 +25,14 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class PokemonDetailsFragment : Fragment(R.layout.fragment_pokemon_details) {
     private val binding by viewBinding(FragmentPokemonDetailsBinding::bind)
+
     @Inject
     lateinit var viewModel: PokemonDetailsViewModelApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setMenu()
         val pokemonId = arguments?.getString(Constants.POKEMON_ID)
         val pokemonName = arguments?.getString(Constants.POKEMON_NAME)
-        if (pokemonId != null && pokemonName != null){
+        if (pokemonId != null && pokemonName != null) {
             viewModelOutputs(pokemonId, pokemonName)
         } else handleLoadingDetailsError(getString(R.string.error_loading_details))
     }
@@ -53,7 +54,7 @@ class PokemonDetailsFragment : Fragment(R.layout.fragment_pokemon_details) {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
-    private fun viewModelOutputs(pokemonId: String, pokemonName : String) = with(viewModel) {
+    private fun viewModelOutputs(pokemonId: String, pokemonName: String) = with(viewModel) {
         run {
             viewModel.getPokemonDetails(pokemonId, pokemonName)
             lifecycleScope.launch {
@@ -83,7 +84,7 @@ class PokemonDetailsFragment : Fragment(R.layout.fragment_pokemon_details) {
         }
     }
 
-    private fun setLoadingScreen() = with(binding){
+    private fun setLoadingScreen() = with(binding) {
         gifImagePokemonDetails.visibility = View.VISIBLE
         constraintLayoutDetails.visibility = View.GONE
         textViewDetailsError.visibility = View.GONE
@@ -96,7 +97,7 @@ class PokemonDetailsFragment : Fragment(R.layout.fragment_pokemon_details) {
         textViewDetailsError.text = msg
     }
 
-    private fun displayDetails(data: PokemonDetails?) = with(binding){
+    private fun displayDetails(data: PokemonDetails?) = with(binding) {
         if (data != null) {
             val height = data.height.toString() + getString(R.string.cm)
             val weight = data.weight.toString() + getString(R.string.kg)

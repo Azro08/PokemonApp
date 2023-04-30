@@ -52,7 +52,7 @@ class PokemonListFragment : Fragment(R.layout.fragment_pokemon_list) {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("SCROLL_POSITION", scrollPosition)
+        outState.putInt(Constants.SCROLL_POSITION, scrollPosition)
     }
 
 
