@@ -1,5 +1,6 @@
 package com.azrosk.mypokemonapp.di
 
+import com.azrosk.data.remote.pokemondetails.PokemonDetailsApi
 import com.azrosk.data.remote.pokemons.PokemonsApi
 import dagger.Module
 import dagger.Provides
@@ -30,5 +31,12 @@ object DataModule {
         retrofit
             .build()
             .create(PokemonsApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideRetrofitPokemonDetailsInstance(retrofit: Retrofit.Builder): PokemonDetailsApi =
+        retrofit
+            .build()
+            .create(PokemonDetailsApi::class.java)
 
 }

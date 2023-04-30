@@ -1,7 +1,10 @@
 package com.azrosk.mypokemonapp.di
 
+import com.azrosk.data.remote.pokemondetails.PokemonDetailsApi
 import com.azrosk.data.remote.pokemons.PokemonsApi
+import com.azrosk.domain.repository.network.PokemonDetailsRepository
 import com.azrosk.domain.repository.network.PokemonsRepository
+import com.azrosk.domain.usecase.GetPokemonDetailsUseCase
 import com.azrosk.domain.usecase.GetPokemonsUseCase
 import dagger.Module
 import dagger.Provides
@@ -22,5 +25,15 @@ object DomainModule {
     @Provides
     fun providePokemonsUseCase(repository: PokemonsRepository): GetPokemonsUseCase =
         GetPokemonsUseCase(repository)
+
+    @Singleton
+    @Provides
+    fun providePokemonDetailsRepository(api: PokemonDetailsApi): PokemonDetailsRepository =
+        PokemonDetailsRepository(api)
+
+    @Singleton
+    @Provides
+    fun providePokemonDetailsUseCase(repository: PokemonDetailsRepository): GetPokemonDetailsUseCase =
+        GetPokemonDetailsUseCase(repository)
 
 }
