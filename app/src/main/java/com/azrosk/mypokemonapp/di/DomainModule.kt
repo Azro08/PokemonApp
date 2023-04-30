@@ -1,0 +1,26 @@
+package com.azrosk.mypokemonapp.di
+
+import com.azrosk.data.remote.pokemons.PokemonsApi
+import com.azrosk.domain.repository.network.PokemonsRepository
+import com.azrosk.domain.usecase.GetPokemonsUseCase
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DomainModule {
+
+    @Singleton
+    @Provides
+    fun providePokemonsRepository(api: PokemonsApi): PokemonsRepository =
+        PokemonsRepository(api)
+
+    @Singleton
+    @Provides
+    fun providePokemonsUseCase(repository: PokemonsRepository): GetPokemonsUseCase =
+        GetPokemonsUseCase(repository)
+
+}
