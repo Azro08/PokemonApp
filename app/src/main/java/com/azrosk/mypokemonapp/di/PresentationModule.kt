@@ -1,5 +1,7 @@
 package com.azrosk.mypokemonapp.di
 
+import com.azrosk.domain.repository.local.PokemonDetailsRoomRepository
+import com.azrosk.domain.repository.local.PokemonRoomRepository
 import com.azrosk.domain.usecase.GetPokemonDetailsUseCase
 import com.azrosk.domain.usecase.GetPokemonsUseCase
 import com.azrosk.logic.viewmodel.PokemonDetailsViewModel
@@ -20,15 +22,17 @@ object PresentationModule {
     @Singleton
     fun providePokemonViewModelApi(
         useCase: GetPokemonsUseCase,
+        repository: PokemonRoomRepository
     ): PokemonsListViewModelApi =
-        PokemonsListViewModel(useCase)
+        PokemonsListViewModel(useCase, repository)
 
     @Provides
     @Singleton
     fun providePokemonDetailsViewModelApi(
         useCase: GetPokemonDetailsUseCase,
+        repository: PokemonDetailsRoomRepository
     ): PokemonDetailsViewModelApi =
-        PokemonDetailsViewModel(useCase)
+        PokemonDetailsViewModel(useCase, repository)
 
 
 }
